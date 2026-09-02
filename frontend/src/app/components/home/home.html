@@ -1,0 +1,132 @@
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-eyebrow">Saveurs tunisiennes authentiques</span>
+    <h1 class="hero-title">La tradition tunisienne,<br>dans chaque bouchée</h1>
+    <p class="hero-text">
+      Bsissa, hlouw et produits traditionnels préparés avec des ingrédients
+      authentiques — le goût de la Tunisie, livré chez vous.
+    </p>
+    <div class="hero-actions">
+      <a routerLink="/products" class="btn-primary">Découvrir nos produits</a>
+      <a href="#brand-story" class="btn-secondary">Notre histoire</a>
+    </div>
+  </div>
+
+  <div class="hero-media">
+    <div class="hero-image-placeholder">
+      <img src="assets/bssisa3..jpeg" alt="Bsissa">
+    </div>
+  </div>
+</section>
+<section class="categories">
+  <h2 class="categories-title">Nos catégories</h2>
+
+  <div class="categories-grid">
+    <a class="category-card" [routerLink]="['/products']" [queryParams]="{ category: 'Bsissa' }">
+      <div class="category-image bsissa">
+         <img src="assets/bssisa1.jpeg" alt="Bsissa">
+      </div>
+      <span class="category-name">Bsissa</span>
+     
+    </a>
+
+    <a class="category-card" [routerLink]="['/products']" [queryParams]="{ category: 'Hlouw' }">
+      <div class="category-image hlouw">
+         <img src="assets/houlw1.jpeg" alt="Hlouw">
+      </div>
+      <span class="category-name">Hlouw</span>
+    </a>
+
+    <a class="category-card" [routerLink]="['/products']" [queryParams]="{ category: 'Produits traditionnels' }">
+      <div class="category-image traditionnels">
+        <img src="assets/bssisa2.jpeg" alt="Produits traditionnels">
+      </div>
+      <span class="category-name">Produits traditionnels</span>
+    </a>
+
+    <a class="category-card" [routerLink]="['/products']" [queryParams]="{ category: 'Coffrets' }">
+      <div class="category-image coffrets">
+        <img src="assets/coffer.jpeg" alt="Coffrets">
+      </div>
+      <span class="category-name">Coffrets</span>
+    </a>
+  </div>
+</section>
+<section class="popular">
+  <h2 class="popular-title">Produits populaires</h2>
+
+  <div *ngIf="popularProducts.length === 0" class="popular-empty">
+    <p>Aucun produit disponible pour le moment.</p>
+  </div>
+
+  <div class="popular-grid">
+    <div class="popular-card" *ngFor="let product of popularProducts">
+      <a [routerLink]="['/products', product._id]" class="popular-card-link">
+       <img [src]="imageBaseUrl + product.image" alt="{{ product.name }}">
+        <h3>{{ product.name }}</h3>
+        <p class="popular-price">{{ product.price }} DT</p>
+        <p *ngIf="product.stock === 0" class="popular-out-of-stock">Rupture de stock</p>
+      </a>
+      <button *ngIf="product.stock > 0" (click)="addToCart(product)">Ajouter au panier</button>
+      <button *ngIf="product.stock === 0" disabled>Indisponible</button>
+    </div>
+  </div>
+</section>
+<section class="why-us">
+  <h2 class="why-us-title">Pourquoi nous choisir</h2>
+
+  <div class="why-us-grid">
+    <div class="why-us-card">
+      <div class="why-us-icon">🌾</div>
+      <h3>Produits 100% tunisiens</h3>
+      <p>Bsissa, hlouw et douceurs préparés selon des recettes traditionnelles authentiques.</p>
+    </div>
+
+    <div class="why-us-card">
+      <div class="why-us-icon">✨</div>
+      <h3>Qualité garantie</h3>
+      <p>Des ingrédients naturels sélectionnés avec soin, sans compromis sur la qualité.</p>
+    </div>
+
+    <div class="why-us-card">
+      <div class="why-us-icon">🚚</div>
+      <h3>Livraison rapide</h3>
+      <p>Votre commande préparée et expédiée avec attention, jusqu'à votre porte.</p>
+    </div>
+
+    <div class="why-us-card">
+      <div class="why-us-icon">💬</div>
+      <h3>Service client à l'écoute</h3>
+      <p>Une question, un besoin particulier ? Nous sommes toujours disponibles pour vous.</p>
+    </div>
+  </div>
+</section>
+<section class="brand-story" id="brand-story">
+  <div class="brand-story-media">
+    <div class="brand-story-image-placeholder">
+      <img src="assets/mouna1.jpeg" alt="mm">
+      <span>Image à venir</span>
+    </div>
+  </div>
+
+  <div class="brand-story-content">
+    <span class="brand-story-eyebrow">Notre histoire</span>
+    <h2 class="brand-story-title">Une passion transmise avec authenticité</h2>
+    <p class="brand-story-text">
+      Depuis toujours, la bsissa et les douceurs tunisiennes se préparent avec patience,
+      des ingrédients simples et beaucoup de savoir-faire familial. Chaque produit que
+      nous proposons respecte cette tradition — sans raccourcis, sans compromis.
+    </p>
+    <p class="brand-story-text">
+      Notre engagement : sélectionner des ingrédients de qualité et vous offrir un goût
+      authentique, fidèle à celui transmis de génération en génération.
+    </p>
+  </div>
+</section>
+<section class="final-cta">
+  <h2 class="final-cta-title">Envie de goûter la tradition ?</h2>
+  <p class="final-cta-text">
+    Découvrez notre sélection de bsissa, hlouw et produits tunisiens authentiques.
+  </p>
+  <a routerLink="/products" class="btn-primary">Voir tous les produits</a>
+</section>

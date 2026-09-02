@@ -1,0 +1,79 @@
+<div class="container products-page">
+  <div class="page-header">
+    <h2>Nos produits</h2>
+    <p class="page-subtitle">Bsissa, hlouw et produits tunisiens authentiques</p>
+  </div>
+
+  <div class="filters-bar mb-3">
+    <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange()"
+      placeholder="Rechercher un produit...">
+
+    <select [(ngModel)]="selectedCategory" (ngModelChange)="onFilterChange()">
+      <option value="">Toutes les catégories</option>
+      <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+    </select>
+
+    <input type="number" [(ngModel)]="minPrice" (ngModelChange)="onFilterChange()" placeholder="Prix min">
+
+    <input type="number" [(ngModel)]="maxPrice" (ngModelChange)="onFilterChange()" placeholder="Prix max">
+
+    <select [(ngModel)]="sortOption" (ngModelChange)="onFilterChange()">
+      <option value="">Trier par</option>
+      <option value="newest">Plus récents</option>
+      <option value="price_asc">Prix croissant</option>
+      <option value="price_desc">Prix décroissant</option>
+      <option value="name_asc">Nom : A-Z</option>
+    </select>
+
+    <label class="stock-filter">
+      <input type="checkbox" [(ngModel)]="inStockOnly" (ngModelChange)="onFilterChange()">
+      En stock uniquement
+    </label>
+    <button *ngIf="hasActiveFilters" class="clear-filters-btn" type="button" (click)="clearFilters()">
+      Réinitialiser les filtres
+    </button>
+  </div>
+
+  <div *ngIf="isLoading" class="state-message">
+    <p>Chargement des produits...</p>
+  </div>
+
+  <div *ngIf="!isLoading && errorMessage" class="state-message error">
+    <p>{{ errorMessage }}</p>
+    <button (click)="loadProducts()">Réessayer</button>
+  </div>
+
+  <div *ngIf="!isLoading && !errorMessage && products.length === 0" class="state-message">
+    <p>Aucun produit trouvé.</p>
+  </div>
+
+  <div class="products-grid" *ngIf="!isLoading && !errorMessage && products.length > 0">
+    <div class="product-card" *ngFor="let product of displayedProducts">
+      <a [routerLink]="['/products', product._id]" class="product-card-link">
+        <div class="product-image-wrap">
+          <img [src]="imageBaseUrl + product.image" alt="{{ product.name }}">
+          <span *ngIf="product.stock === 0" class="stock-badge out">Rupture de stock</span>
+          <span *ngIf="product.stock > 0 && product.stock <= 5" class="stock-badge low">Stock limité</span>
+        </div>
+
+        <div class="product-info">
+          <span class="product-category">{{ product.category }}</span>
+          <h3>{{ product.name }}</h3>
+          <p class="product-description">{{ product.description }}</p>
+          <p class="price">{{ product.price }} DT</p>
+        </div>
+      </a>
+
+      <div class="product-actions">
+        <a [routerLink]="['/products', product._id]" class="btn-outline">Voir détails</a>
+        <button *ngIf="product.stock > 0" (click)="addToCart(product, $event)">Ajouter au panier</button>
+        <button *ngIf="product.stock === 0" disabled>Indisponible</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="load-more-wrap" *ngIf="!isLoading && displayedProducts.length < products.length">
+    <button class="btn-outline load-more-btn" (click)="loadMore()">Charger plus de produits</button>
+  </div>
+ 
+</div>

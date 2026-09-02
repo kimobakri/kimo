@@ -1,0 +1,27 @@
+<nav class="navbar">
+<div>
+    <a routerLink="/" class="logo" (click)="closeMenu()" >
+      <img src="assets/logo2.jpeg" alt="Omkimo Logo" class="logo-image">
+     Omkimo</a>
+</div>
+
+  <button class="menu-toggle" (click)="toggleMenu()" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <div class="nav-links" [class.open]="isMenuOpen">
+    <a routerLink="/" (click)="closeMenu()">Accueil</a>
+    <a routerLink="/products" (click)="closeMenu()">Produits</a>
+
+    <a routerLink="/cart" class="cart-link" (click)="closeMenu()">
+      Panier
+      <span class="cart-badge" *ngIf="cartCount > 0">{{ cartCount }}</span>
+    </a>
+
+    <a *ngIf="authService.isLoggedIn()" routerLink="/admin" (click)="closeMenu()">Admin</a>
+    <a *ngIf="!authService.isLoggedIn()" routerLink="/login" (click)="closeMenu()">Connexion</a>
+    <button *ngIf="authService.isLoggedIn()" (click)="logout()">Déconnexion</button>
+  </div>
+</nav>

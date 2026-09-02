@@ -1,0 +1,68 @@
+<div class="container stock-page">
+  <h2>Gestion du stock</h2>
+
+  <div class="stock-summary" *ngIf="!isLoading">
+    <div class="summary-pill total">{{ rows.length }} produits</div>
+    <div class="summary-pill low" *ngIf="lowStockCount > 0">{{ lowStockCount }} en stock faible</div>
+    <div class="summary-pill out" *ngIf="outOfStockCount > 0">{{ outOfStockCount }} en rupture</div>
+  </div>
+
+  <div class="filter-tabs">
+    <button [class.active]="filter === 'all'" (click)="filter = 'all'">Tous</button>
+    <button [class.active]="filter === 'low'" (click)="filter = 'low'">Stock faible</button>
+    <button [class.active]="filter === 'out'" (click)="filter = 'out'">Rupture</button>
+  </div>
+
+  <div *ngIf="isLoading" class="state-message">
+    <p>Chargement...</p>
+  </div>
+
+  <div *ngIf="!isLoading && errorMessage" class="state-message error">
+    <p>{{ errorMessage }}</p>
+    <button (click)="loadProducts()">Réessayer</button>
+  </div>
+
+  <div *ngIf="!isLoading && !errorMessage && filteredRows.length === 0" class="state-message">
+    <p>Aucun produit dans cette catégorie.</p>
+  </div>
+
+  <div class="table-wrapper" *ngIf="!isLoading && !errorMessage && filteredRows.length > 0">
+    <table>
+      <tr>
+        <th>Produit</th>
+        <th>Catégorie</th>
+        <th>Stock actuel</th>
+        <th>Ajuster</th>
+        <th>Action</th>
+      </tr>
+      <tr *ngFor="let row of filteredRows" [class.row-out]="row.stock === 0" [class.row-low]="row.stock > 0 && row.stock <= 5">
+        <td class="product-cell">
+<img *ngIf="row.image" [src]="imageBaseUrl + row.image" alt="{{ row.name }}" class="current-image"> 
+         <span>{{ row.name }}</span>
+        </td>
+        <td>{{ row.category }}</td>
+        <td>
+          <span class="current-stock" [class.out]="row.stock === 0" [class.low]="row.stock > 0 && row.stock <= 5">
+            {{ row.stock }}
+          </span>
+        </td>
+        <td>
+          <div class="stock-controls">
+            <button type="button" (click)="decrement(row)" [disabled]="row.editedStock <= 0">&minus;</button>
+            <input type="number" [(ngModel)]="row.editedStock" min="0">
+            <button type="button" (click)="increment(row)">+</button>
+          </div>
+        </td>
+        <td>
+          <button
+            class="save-btn"
+            [disabled]="!hasChanged(row) || row.isSaving"
+            (click)="saveStock(row)"
+          >
+            {{ row.isSaving ? '...' : 'Enregistrer' }}
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

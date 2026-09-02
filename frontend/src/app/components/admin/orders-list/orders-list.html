@@ -1,0 +1,28 @@
+<div class="container orders-page">
+  <h2>Commandes</h2>
+
+  <div *ngIf="orders.length === 0" class="state-message">
+    <p>Aucune commande en attente.</p>
+  </div>
+
+  <div class="table-wrapper" *ngIf="orders.length > 0">
+    <table>
+      <tr>
+        <th>Client</th><th>Téléphone</th><th>Adresse</th>
+        <th>Total</th><th>Statut</th><th>Action</th>
+      </tr>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.customerName }}</td>
+        <td>{{ order.phone }}</td>
+        <td>{{ order.address }}</td>
+        <td class="order-total">{{ order.total }} DT</td>
+        <td><span class="status-badge" [class]="'status-' + order.status">{{ order.status }}</span></td>
+        <td>
+          <button *ngIf="order.status === 'pending'" class="confirm-btn" (click)="confirmOrder(order)">
+            Confirmer
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

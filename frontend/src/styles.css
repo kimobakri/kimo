@@ -1,0 +1,150 @@
+/* =========================================================
+   GLOBAL THEME — Design Tokens
+   Tunisian traditional & premium identity
+   Inspired by: bsissa, honey, dates, almonds
+   ========================================================= */
+:root {
+  /* Brand colors */
+  --color-primary: #5C3524;        /* deep date-paste brown — headings, primary buttons */
+  --color-primary-dark: #45271A;   /* hover/active state */
+  --color-accent: #C88A3D;         /* bsissa gold-tan — secondary actions, highlights */
+  --color-accent-dark: #A8722F;
+  --color-honey: #E3A93F;          /* honey gold — badges, prices, small accents */
+
+  /* Backgrounds */
+  --color-bg: #FBF3E6;             /* warm ivory page background */
+  --color-bg-alt: #F3E6CE;         /* alternate section background */
+  --color-surface: #FFFFFF;        /* cards, inputs, tables */
+  --color-almond: #EFE2C8;         /* borders, subtle dividers */
+
+  /* Text */
+  --color-text: #3C2415;           /* primary text — warm near-black */
+  --color-text-muted: #7A5C42;     /* secondary text */
+  --color-text-on-dark: #FBF3E6;   /* text on primary/dark backgrounds */
+
+  /* Feedback (kept neutral, not part of brand palette) */
+  --color-success: #4C7A3D;
+  --color-danger: #B3452C;
+
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Poppins', sans-serif;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+
+  /* Shadows — warm-tinted instead of pure black */
+  --shadow-sm: 0 1px 3px rgba(60, 36, 21, 0.12);
+  --shadow-md: 0 4px 12px rgba(60, 36, 21, 0.14);
+  --shadow-lg: 0 10px 30px rgba(60, 36, 21, 0.18);
+
+  /* Spacing scale */
+  --space-xs: 6px;
+  --space-sm: 12px;
+  --space-md: 20px;
+  --space-lg: 32px;
+  --space-xl: 56px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
+}
+
+h1, h2 {
+  text-shadow: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-primary);
+}
+
+a:hover {
+  color: var(--color-accent-dark);
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: var(--color-text-on-dark);
+  border: none;
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  margin: 6px;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+input, select {
+  padding: 8px 12px;
+  border: 1px solid var(--color-almond);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 14px;
+  width: 100%;
+  max-width: 300px;
+  margin: 5px;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(200, 138, 61, 0.2);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+th, td {
+  padding: 12px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-almond);
+}
+
+th {
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--space-md);
+}

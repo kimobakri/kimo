@@ -1,0 +1,11 @@
+.orders-page { padding-top: var(--space-lg); padding-bottom: var(--space-xl); }
+.orders-page h2 { margin-bottom: var(--space-md); }
+.state-message { text-align: center; padding: 40px 20px; color: var(--color-text-muted); }
+.table-wrapper { overflow-x: auto; }
+.order-total { font-weight: 700; color: var(--color-accent-dark); }
+.status-badge { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; text-transform: capitalize; }
+.status-pending { background-color: rgba(227, 169, 63, 0.18); color: var(--color-honey); }
+.status-shipped { background-color: rgba(200, 138, 61, 0.15); color: var(--color-accent-dark); }
+.status-delivered { background-color: rgba(76, 122, 61, 0.15); color: var(--color-success); }
+.status-cancelled { background-color: rgba(179, 69, 44, 0.12); color: var(--color-danger); }
+.confirm-btn { font-size: 13px; padding: 6px 14px; margin: 0; }

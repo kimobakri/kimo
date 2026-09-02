@@ -1,0 +1,10 @@
+.orders-page { padding-top: var(--space-lg); padding-bottom: var(--space-xl); }
+.orders-page h2 { margin-bottom: var(--space-md); }
+.state-message { text-align: center; padding: 40px 20px; color: var(--color-text-muted); }
+.table-wrapper { overflow-x: auto; }
+.order-total { font-weight: 700; color: var(--color-accent-dark); }
+.delete-btn {
+  background: transparent; color: var(--color-danger);
+  border: 1px solid var(--color-almond); font-size: 13px; padding: 5px 14px; margin: 0;
+}
+.delete-btn:hover { background: transparent; border-color: var(--color-danger); }

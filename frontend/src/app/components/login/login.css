@@ -1,0 +1,18 @@
+.login-page { padding-top: var(--space-xl); }
+.login-card {
+  background: var(--color-surface);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  max-width: 380px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-md);
+}
+.login-card h2 { text-align: center; margin-bottom: var(--space-md); }
+.form-group { margin-bottom: var(--space-md); }
+.form-group label {
+  display: block; margin-bottom: 6px; font-weight: 600;
+  font-size: 13px; color: var(--color-text-muted);
+}
+.login-card input { max-width: 100%; width: 100%; }
+.login-card button { width: 100%; padding: 12px; margin: 6px 0 0; font-size: 15px; }
+.error { color: var(--color-danger); margin-top: var(--space-sm); font-size: 13px; text-align: center; }

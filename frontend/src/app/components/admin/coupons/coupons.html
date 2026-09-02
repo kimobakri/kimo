@@ -1,0 +1,46 @@
+<div class="container coupons-page">
+  <h2>Gestion des coupons</h2>
+
+  <form (ngSubmit)="addCoupon()" class="coupon-form">
+    <input type="text" [(ngModel)]="code" name="code" placeholder="Code (ex. SUMMER10)" required>
+    <select [(ngModel)]="discountType" name="discountType">
+      <option value="percentage">Pourcentage (%)</option>
+      <option value="amount">Montant fixe (DT)</option>
+    </select>
+    <input type="number" [(ngModel)]="discountValue" name="discountValue" placeholder="Valeur de la réduction" required>
+    <input type="number" [(ngModel)]="minOrderAmount" name="minOrderAmount" placeholder="Montant minimum">
+    <input type="date" [(ngModel)]="startDate" name="startDate" required>
+    <input type="date" [(ngModel)]="endDate" name="endDate" required>
+    <button type="submit">Ajouter le coupon</button>
+  </form>
+
+  <div *ngIf="coupons.length === 0" class="state-message">
+    <p>Aucun coupon pour le moment.</p>
+  </div>
+
+  <div class="table-wrapper" *ngIf="coupons.length > 0">
+    <table>
+      <tr>
+        <th>Code</th><th>Réduction</th><th>Montant min.</th>
+        <th>Valide jusqu'au</th><th>Statut</th><th>Action</th>
+      </tr>
+      <tr *ngFor="let coupon of coupons">
+        <td class="coupon-code">{{ coupon.code }}</td>
+        <td>{{ coupon.discountValue }}{{ coupon.discountType === 'percentage' ? '%' : ' DT' }}</td>
+        <td>{{ coupon.minOrderAmount }} DT</td>
+        <td>{{ coupon.endDate | date:'shortDate' }}</td>
+        <td>
+          <span class="status-badge" [class.active]="coupon.isActive" [class.inactive]="!coupon.isActive">
+            {{ coupon.isActive ? 'Actif' : 'Inactif' }}
+          </span>
+        </td>
+        <td class="actions-cell">
+          <button class="toggle-btn" (click)="toggleActive(coupon)">
+            {{ coupon.isActive ? 'Désactiver' : 'Activer' }}
+          </button>
+          <button class="delete-btn" (click)="deleteCoupon(coupon._id)">Supprimer</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

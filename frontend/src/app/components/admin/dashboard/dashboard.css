@@ -1,0 +1,140 @@
+.admin-dashboard {
+  padding-top: var(--space-lg);
+  padding-bottom: var(--space-xl);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin: var(--space-md) 0 var(--space-lg);
+}
+
+.stat-card {
+  background: var(--color-surface);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-card h4 {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+  font-family: var(--font-body);
+}
+
+.stat-card p {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.revenue p {
+  color: var(--color-success);
+}
+
+.warning p {
+  color: var(--color-honey);
+}
+
+.danger p {
+  color: var(--color-danger);
+}
+
+.admin-actions {
+  display: flex;
+  gap: 12px;
+  margin: 0 0 var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.action-link {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-dark);
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.action-link:hover {
+  background-color: var(--color-primary-dark);
+  text-decoration: none;
+}
+
+.admin-dashboard h3 {
+  margin-bottom: var(--space-sm);
+}
+
+.state-message {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--color-text-muted);
+}
+
+.state-message .action-link {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.product-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.product-cell img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.stock-low {
+  color: var(--color-honey);
+  font-weight: 600;
+}
+
+.stock-out {
+  color: var(--color-danger);
+  font-weight: 600;
+}
+
+.actions-cell {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.edit-link {
+  color: var(--color-accent-dark);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.edit-link:hover {
+  color: var(--color-primary);
+}
+
+.delete-btn {
+  background: transparent;
+  color: var(--color-danger);
+  border: 1px solid var(--color-almond);
+  padding: 4px 12px;
+  font-size: 13px;
+  margin: 0;
+}
+
+.delete-btn:hover {
+  background: transparent;
+  border-color: var(--color-danger);
+}

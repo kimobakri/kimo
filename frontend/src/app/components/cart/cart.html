@@ -1,0 +1,51 @@
+<div class="container cart-page">
+  <h2>Votre panier</h2>
+
+  <div *ngIf="items.length === 0" class="empty-cart">
+    <p>Votre panier est vide.</p>
+    <a routerLink="/products" class="btn-primary">Découvrir nos produits</a>
+  </div>
+
+  <div *ngIf="items.length > 0" class="cart-layout">
+    <div class="cart-items">
+      <div class="cart-item" *ngFor="let item of items">
+      <img [src]="imageBaseUrl + item.product.image" alt="{{ item.product.name }}">
+
+        <div class="cart-item-info">
+          <h3>{{ item.product.name }}</h3>
+          <p class="cart-item-price">{{ item.product.price }} DT</p>
+        </div>
+
+        <div class="quantity-controls">
+          <button type="button" (click)="decreaseQuantity(item)">&minus;</button>
+          <span class="quantity-value">{{ item.quantity }}</span>
+          <button
+            type="button"
+            (click)="increaseQuantity(item)"
+            [disabled]="item.quantity >= item.product.stock"
+          >+</button>
+        </div>
+
+        <p class="cart-item-subtotal">{{ item.product.price * item.quantity }} DT</p>
+
+        <button class="remove-btn" (click)="removeItem(item.product._id)" aria-label="Retirer">&times;</button>
+      </div>
+
+      <button class="clear-cart-btn" (click)="clearCart()">Vider le panier</button>
+    </div>
+
+    <div class="cart-summary">
+      <h3>Résumé</h3>
+      <div class="summary-row">
+        <span>Sous-total</span>
+        <span>{{ total }} DT</span>
+      </div>
+      <div class="summary-row total-row">
+        <span>Total</span>
+        <span>{{ total }} DT</span>
+      </div>
+      <a routerLink="/checkout" class="checkout-btn">Passer la commande</a>
+      <a routerLink="/products" class="continue-link">Continuer mes achats</a>
+    </div>
+  </div>
+</div>

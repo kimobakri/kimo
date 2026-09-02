@@ -1,0 +1,46 @@
+<div class="container details-page">
+  <a routerLink="/products" class="back-link">&larr; Retour aux produits</a>
+
+  <div *ngIf="isLoading" class="state-message">
+    <p>Chargement du produit...</p>
+  </div>
+
+  <div *ngIf="!isLoading && errorMessage" class="state-message error">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="!isLoading && !errorMessage && product" class="details-card">
+    <div class="details-image-wrap">
+<img [src]="imageBaseUrl + product.image" alt="{{ product.name }}">
+      <span *ngIf="product.stock === 0" class="stock-badge out">Rupture de stock</span>
+      <span *ngIf="product.stock > 0 && product.stock <= 5" class="stock-badge low">Stock limité</span>
+    </div>
+
+    <div class="details-info">
+      <span class="details-category">{{ product.category }}</span>
+      <h1>{{ product.name }}</h1>
+      <p class="details-price">{{ product.price }} DT</p>
+      <p class="details-description">{{ product.description }}</p>
+
+      <p class="details-stock" [class.out]="product.stock === 0">
+        {{ product.stock > 0 ? product.stock + ' en stock' : 'Rupture de stock' }}
+      </p>
+
+      <div class="quantity-selector" *ngIf="product.stock > 0">
+        <span class="quantity-label">Quantité</span>
+        <div class="quantity-controls">
+          <button type="button" (click)="decreaseQuantity()" [disabled]="quantity <= 1">&minus;</button>
+          <span class="quantity-value">{{ quantity }}</span>
+          <button type="button" (click)="increaseQuantity()" [disabled]="quantity >= product.stock">+</button>
+        </div>
+      </div>
+
+      <button *ngIf="product.stock > 0" class="add-to-cart-btn" (click)="addToCart()">
+        Ajouter au panier
+      </button>
+      <button *ngIf="product.stock === 0" class="add-to-cart-btn" disabled>
+        Indisponible
+      </button>
+    </div>
+  </div>
+</div>
