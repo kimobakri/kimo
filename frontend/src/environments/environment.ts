@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:5000',
-  apiUrl: 'http://localhost:5000/api'
+  apiBaseUrl: 'https://kimo-y3m5.vercel.app/',
+  apiUrl: 'https://kimo-y3m5.vercel.app/api'
 };
