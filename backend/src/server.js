@@ -38,6 +38,4 @@ app.use('/api/coupons', couponRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+module.exports = app;
