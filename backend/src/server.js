@@ -37,5 +37,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/coupons', couponRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 
-
+app.listen(process.env.PORT || 5000, () => {
+    console.log(`Server running on port ${process.env.PORT || 5000} 🚀`);
+});
 module.exports = app;
